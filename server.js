@@ -13,10 +13,15 @@ app.get("/", function (req, res) {
 
 app.get("/api/timestamp/:time?", function (req, res) {
   let time = req.params.time;
-  
+
   if (!time) {
     time = new Date();
   }
+  
+  if (!isNaN(time)) {
+    time = parseInt(time, 10)
+  }
+  
   time = new Date(time);
   
   if (time === "Invalid Date") {
@@ -30,7 +35,6 @@ app.get("/api/timestamp/:time?", function (req, res) {
   res.json({
     unix: time.getTime(),
     utc: time.toUTCString()
-    
   });
 });
 
