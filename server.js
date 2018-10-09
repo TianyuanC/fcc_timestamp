@@ -16,9 +16,7 @@ app.get("/api/timestamp/:time?", function (req, res) {
 
   if (!time) {
     time = new Date();
-  }
-  
-  if (!isNaN(time)) {
+  } else if (!isNaN(time)) {
     time = parseInt(time, 10)
   }
   
